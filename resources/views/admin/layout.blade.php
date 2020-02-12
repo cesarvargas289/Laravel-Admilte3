@@ -76,21 +76,12 @@ to get the desired effect
     <a href="index3.html" class="brand-link">
       <img src="{{ URL::asset('/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">ATC</span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="{{ URL::asset('/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
-        </div>
-      </div>
-
+      
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -100,29 +91,24 @@ to get the desired effect
             <a href="#" class="nav-link active">
               <i class="nav-icon fa fa-dashboard"></i>
               <p>
-                Dashboard
+                Usuario
                 <i class="right fa fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./index.html" class="nav-link">
+                <a href="{{ route('rol.index') }}" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Dashboard v1</p>
+                  <p>Roles</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index2.html" class="nav-link">
+                <a href="{{ route('user.index') }}" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Dashboard v2</p>
+                  <p>Usuarios</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="./index3.html" class="nav-link active">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Dashboard v3</p>
-                </a>
-              </li>
+             
             </ul>
           </li>
           <li class="nav-item">
@@ -227,170 +213,10 @@ to get the desired effect
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-table"></i>
-              <p>
-                Tables
-                <i class="fa fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/tables/simple.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Simple Tables</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/tables/data.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Data Tables</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-header">EXAMPLES</li>
-          <li class="nav-item">
-            <a href="pages/calendar.html" class="nav-link">
-              <i class="nav-icon fa fa-calendar"></i>
-              <p>
-                Calendar
-                <span class="badge badge-info right">2</span>
-              </p>
-            </a>
-          </li>
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-envelope-o"></i>
-              <p>
-                Mailbox
-                <i class="fa fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/mailbox/mailbox.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Inbox</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/mailbox/compose.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Compose</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/mailbox/read-mail.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Read</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-book"></i>
-              <p>
-                Pages
-                <i class="fa fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/examples/invoice.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Invoice</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/examples/profile.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Profile</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/examples/login.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Login</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/examples/register.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Register</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/examples/lockscreen.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Lockscreen</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-plus-square-o"></i>
-              <p>
-                Extras
-                <i class="fa fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/examples/404.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Error 404</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/examples/500.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Error 500</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/examples/blank.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Blank Page</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="starter.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Starter Page</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-header">MISCELLANEOUS</li>
-          <li class="nav-item">
-            <a href="https://adminlte.io/docs" class="nav-link">
-              <i class="nav-icon fa fa-file"></i>
-              <p>Documentation</p>
-            </a>
-          </li>
-          <li class="nav-header">LABELS</li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-circle-o text-danger"></i>
-              <p class="text">Important</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-circle-o text-warning"></i>
-              <p>Warning</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-circle-o text-info"></i>
-              <p>Informational</p>
-            </a>
-          </li>
+         
+         
+          
+          
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -405,14 +231,9 @@ to get the desired effect
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Dashboard v3</h1>
+            <h1 class="m-0 text-dark">@yield('content-title')</h1>
           </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v3</li>
-            </ol>
-          </div><!-- /.col -->
+          
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
@@ -421,9 +242,8 @@ to get the desired effect
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
-        <div class="row">
-          @yield('content')
-        <!-- /.row -->
+        @yield('content')
+
       </div>
       <!-- /.container-fluid -->
     </div>

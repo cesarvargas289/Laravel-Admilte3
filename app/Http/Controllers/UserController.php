@@ -110,7 +110,7 @@ class UserController extends Controller
         $roles_user = Rol_User::all();
         $selectedvalue_rol = DB::table('role_user')->where('user_id', $id)->value('role_id');
 
-        return view('user.edit', compact('user', 'campaigns', 'roles', 'roles_user', 'selectedvalue_rol'));
+        return view('user.edit', compact('user',  'roles', 'roles_user', 'selectedvalue_rol'));
 
     }
 
@@ -135,22 +135,14 @@ class UserController extends Controller
         //Se verifica si el password esta encriptado si lo está, actualiza todo menos el password si no, encripta el password y actualiza
         if( strlen($password) == 60 ){
             User::findOrFail($id)->update($request->except('password'));
-            //Se hace el update en el segundo servidor con el mismo ID
-            $update = DB::connection('server2')->table('users')
-                ->where('users.id', '=', $id)
-                ->update(request()
-                    ->except(['_token', '_method', 'password', 'rol']));
         }else{
             User::findOrFail($id)->update($request->all());
             User::findOrFail($id)->update($request->except('password'));
             User::findOrFail($id)->update( ['password' => bcrypt($request['password'])]);
-
         }
-
         //Actualizacion de rol al usuario en tabla intermedia
         $rol = Input::get('rol');
         Rol_User::where('user_id', $id)->update(['role_id' => $rol]);
-
 
         //Redireccionamos
         return redirect()->route('user.index');
@@ -165,16 +157,10 @@ class UserController extends Controller
     public function destroy(Request $request, $id)
     {
         $request->user()->authorizeRoles('admin');
-
-
         User::findOrFail($id)->delete();
-
-
         $id = DB::table('role_user')->where('user_id', $id)->value('id');
-
         //Borra la relación en tabla role_user entre usuario y rol
         Rol_User::findOrFail($id)->delete();
-
         //Redireccionar
         return redirect()->route('user.index');
     }
