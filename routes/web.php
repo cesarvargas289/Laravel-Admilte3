@@ -33,6 +33,21 @@ Route::resource('user', 'UserController');
 Route::resource('acceso', 'AccesoController');
 Route::resource('rol', 'RoleController');
 
+//Route::resource('cece', 'CeceController');
+
+
+Route::get('cece',  ['as' => 'cece.index', 'uses' =>'CeceController@index']);
+Route::post('cece/', ['as' => 'cece.post', 'uses' => 'CeceController@indexPost']);
+
+Route::get('seg',  ['as' => 'seg.index', 'uses' =>'ImportExcelSEGController@index']);
+Route::post('seg/', ['as' => 'seg.post', 'uses' => 'ImportExcelSEGController@import']);
+
+
+Route::get('reporte_seg',  ['as' => 'reporte_seg.index', 'uses' =>'ReporteSegController@index']);
+Route::post('reporte_seg/', ['as' => 'reporte_seg.post', 'uses' => 'ReporteSegController@indexPost']);
+
+
+
 
 Route::get('admin', function(){
 

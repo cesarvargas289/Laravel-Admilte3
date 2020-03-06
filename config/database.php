@@ -56,7 +56,7 @@ return [
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
             'prefix_indexes' => true,
-            'strict' => true,
+            'strict' => false,
             'engine' => null,
             'options' => extension_loaded('pdo_mysql') ? array_filter([
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
@@ -90,6 +90,22 @@ return [
             'prefix' => '',
             'prefix_indexes' => true,
         ],
+
+        'oracle' => [
+            'driver'        => 'oracle',
+            'tns'           => env('DB_TNS', ''),
+            'host'          => env('DB_HOST_2', ''),
+            'port'          => env('DB_PORT_2', '3389'),
+            'database'      => env('DB_DATABASE_2', ''),
+            'username'      => env('DB_USERNAME_2', ''),
+            'password'      => env('DB_PASSWORD_2', ''),
+            'charset'       => env('DB_CHARSET', 'AL32UTF8'),
+            'prefix'        => env('DB_PREFIX', ''),
+            'prefix_schema' => env('DB_SCHEMA_PREFIX', ''),
+            'edition'       => env('DB_EDITION', 'ora$base'),
+        ],
+
+
 
     ],
 

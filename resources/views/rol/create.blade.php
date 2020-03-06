@@ -3,9 +3,7 @@
     @section('content-title')
         Crear Rol
     @stop
-
     @section('content')
-
         @if(session()->has('info'))
             <h3>{{ session('info') }}</h3>
         @else

@@ -15,6 +15,10 @@
   <link rel="stylesheet" href="{{ URL::asset('/dist/css/adminlte.min.css') }}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+   <!-- Icons Font: Source Font Awesome -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" >
+
+
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -36,7 +40,7 @@ to get the desired effect
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Inicio</a>
+        <a href="/home" class="nav-link">Inicio</a>
       </li>
     </ul>
 
@@ -111,15 +115,14 @@ to get the desired effect
              
             </ul>
           </li>
+
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
-              <i class="nav-icon fa fa-th"></i>
-              <p>
-                Widgets
-                <span class="right badge badge-danger">New</span>
-              </p>
-            </a>
-          </li>
+                <a href="{{ route('cece.index') }}" class="nav-link">
+                  <i class="nav-icon fa fa-tree"></i>
+                  <p>Reporte Cece</p>
+                </a>
+              </li>
+          
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-pie-chart"></i>
@@ -274,5 +277,9 @@ to get the desired effect
 <script src="{{ URL::asset('plugins/chart.js/Chart.min.js')}}"></script>
 <script src="{{ URL::asset('/dist/js/demo.js')}}"></script>
 <script src="{{ URL::asset('/dist/js/pages/dashboard3.js')}}"></script>
+
+ <script type="text/javascript">
+@yield('scripts')
+ </script>
 </body>
 </html>
