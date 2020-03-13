@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
-use App\Seg;
+use App\Objetado;
 use Session;
 use Carbon\Carbon;
 use DateTime;
 
-class ImportExcelSEGController extends Controller
+class ImportExcelObjetadoController extends Controller
 {
     public function __construct()
     {
@@ -17,8 +17,8 @@ class ImportExcelSEGController extends Controller
     }
     public function index()
     {
-         $datos_seg = Seg::where("fecha_solicitud",">", Carbon::now()->subMonths(2))->get();;
-    	return view('import_seg.index', compact('datos_seg'));
+         $datos_objetado = Objetado::where("fecha_solicitud",">", Carbon::now()->subMonths(2))->get();
+    	return view('import_objetado.index', compact('datos_objetado'));
     }
 
     public function import(Request $request)
@@ -67,23 +67,17 @@ class ImportExcelSEGController extends Controller
                     foreach($importData_arr as $importData){
                          //dd($importData);
                             
-                          $fecha_solicitud =$this->change_date_format($importData[7]);
+                          $fecha_solicitud =$this->change_date_format($importData[1]);
                           //dd($fecha_solicitud);
-                          $fecha_convenida = $this->change_date_format($importData[8]);
-                          $fecha_entrega = $this->change_date_format($importData[9]);
-                            Seg::updateOrCreate(
-                            ['solicitud'=>utf8_encode($importData[0])],
-                            ['solicitud_sc'=>utf8_encode($importData[1]),
-                            'nis'=>utf8_encode($importData[2]),
-                            'tipo_servicio'=>utf8_encode($importData[3]),
-                            'movimiento'=>utf8_encode($importData[4]),
-                            'pronostico'=>utf8_encode($importData[5]),
-                            'etapa'=>utf8_encode($importData[6]),
-                            'fecha_solicitud'=>utf8_encode($fecha_solicitud),
-                            'fecha_convenida'=>utf8_encode($fecha_convenida),
-                            'fecha_entrega'=>utf8_encode($fecha_entrega),
-                            'problema'=>utf8_encode($importData[10]),
-                            'comentarios'=>utf8_encode($importData[11]) ]);             
+                          $fecha_instalacion = $this->change_date_format($importData[2]);
+                          $fecha_objecion = $this->change_date_format($importData[4]);
+                            Objetado::updateOrCreate(
+                            ['folio_seg'=>utf8_encode($importData[0])],
+                            ['fecha_solicitud'=>utf8_encode($fecha_solicitud),
+                            'fecha_instalacion'=>utf8_encode($fecha_instalacion),
+                            'estatus_seg'=>utf8_encode($importData[3]),
+                            'fecha_objecion'=>utf8_encode($fecha_objecion),
+                            'motivo_objecion'=>utf8_encode($importData[5]) ]);             
                     }
                         Session::flash('message_success','Guardado Correctamente.');
                     }else{
@@ -94,7 +88,7 @@ class ImportExcelSEGController extends Controller
             }
         }
         // Redirect to index
-        return redirect()->action('ImportExcelSEGController@index');
+        return redirect()->action('ImportExcelObjetadoController@index');
     }
 
     public function change_date_format($date)
@@ -103,8 +97,8 @@ class ImportExcelSEGController extends Controller
         $año = substr($date, 6, 4);
         $mes = substr($date, 3, 2);      
         $dia = substr($date, 0, 2);    
-        $hora =substr($date, 10, 6);
-        $fecha = $año.'/'.$mes.'/'.$dia.$hora;
+        
+        $fecha = $año.'/'.$mes.'/'.$dia;
         return $fecha;
             
     }

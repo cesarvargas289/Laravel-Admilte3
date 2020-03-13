@@ -1,7 +1,7 @@
- @extends('admin.layout')
+@extends('admin.layout')
 
     @section('content-title')
-    <h1>Importar archivo SEG</h1>
+    <h1>Importar archivo Acumulado</h1>
 @stop
 @section('content')
 
@@ -15,7 +15,7 @@
      
 
 <div class="card card"> 
- <form method="POST" enctype="multipart/form-data" action="{{ route('seg.post') }}">
+ <form method="POST" enctype="multipart/form-data" action="{{ route('acumulado.post') }}">
             {!! csrf_field() !!}
     <div class="card-header"> 
         <div class="row">
@@ -31,24 +31,24 @@
     	</div>
     </div>
 </form>
- @if (isset($datos_seg))
+ @if (isset($datos_acumulado))
     <div class="card-body"> 
-        <table width="100%" class="table table-striped table-bordered" id ="seg-table">
+        <table width="100%" class="table table-striped table-bordered" id ="acumulado-table">
             <thead>
                 <tr>
-                    <th>Solicitud</th>
-                    <th>Movimiento</th>
-                    <th>Etapa</th>
-                    <th>Fecha solicitud</th>
+                    <th>Número suscriptor</th>
+                    <th>Estatus Suscriptor</th>
+                    <th>Ciclofacturación</th>
+                    <th>Fecha Captura</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($datos_seg as $datos)
+                @foreach($datos_acumulado as $datos)
                     <tr>
-                        <td>{{ $datos->solicitud }}</td>
-                        <td>{{ $datos->movimiento }}</td>
-                        <td>{{ $datos->etapa }}</td>
-                        <td>{{ $datos->fecha_solicitud }}</td>
+                        <td>{{ $datos->numero_suscriptor }}</td>
+                        <td>{{ $datos->estatus_suscriptor }}</td>
+                        <td>{{ $datos->ciclo_facturacion }}</td>
+                        <td>{{ $datos->fecha_captura }}</td>
                     </tr>
                 @endforeach
             </tbody>
@@ -68,7 +68,7 @@
  
  <script type="text/javascript">
     $(document).ready(function() {
-        $('#seg-table').DataTable();
+        $('#acumulado-table').DataTable();
         });
 
 

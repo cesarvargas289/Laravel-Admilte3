@@ -1,7 +1,7 @@
- @extends('admin.layout')
+@extends('admin.layout')
 
  @section('header')
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />   
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.bootstrap.min.css" />
@@ -9,10 +9,10 @@
  @stop
 
     @section('content-title')
-    <h1>Reporte SEG</h1>
+    <h1>Reporte Acumulado</h1>
 @stop
 @section('content')
-<form method="POST" action="{{ route('reporte_seg.post') }}">
+<form method="POST" action="{{ route('reporte_acumulado.post') }}">
             {!! csrf_field() !!}
 <div class="card card-default" data-select2-id="42">
     <div class="card-header"> 
@@ -52,17 +52,17 @@
                     <th>Val Velocidad</th>
                     <th>Velocidad Alcanzada</th>
                     <th>Motivo Objeción</th>
-                    <th>Solicitud SC</th>
-                    <th>Nis</th>
-                    <th>Tipo de Servicio</th>
-                    <th>Movimiento</th>
-                    <th>Pronostico</th>
-                    <th>Etapa</th>
-                    <th>Fecha Solicitud</th>
-                    <th>Fecha Convenida</th>
-                    <th>Fecha Entrega</th>
-                    <th>Problema</th>
-                    <th>Comentarios</th>
+                    
+                    <th>Estatus Suscriptor</th>
+                    <th>Estado de la Orden </th>
+                    <th>Canal de Venta</th>
+                    <th>Estado</th>
+                    <th>Internet</th>
+                    <th>Ciclo de facturación</th>
+                    <th>Número de Orden</th>
+                    <th>Fecha Creación de Orden</th>
+                    <th>Fecha Cierre de Orden</th>
+                    <th>Play</th>               
                 </tr>
             </thead>
             <tbody>
@@ -80,17 +80,17 @@
                         <td>{{ $resultado['val_fact_vel'] }}</td>
                         <td>{{ $resultado['vel_alc'] }}</td>
                         <td>{{ $resultado['motivo_obj'] }}</td>
-                        <td>{{ $resultado['solicitud_sc'] }}</td>
-                        <td>{{ $resultado['nis'] }}</td>
-                        <td>{{ $resultado['tipo_servicio'] }}</td>
-                        <td>{{ $resultado['movimiento'] }}</td>
-                        <td>{{ $resultado['pronostico'] }}</td>
-                        <td>{{ $resultado['etapa'] }}</td>
-                        <td>{{ $resultado['fecha_solicitud'] }}</td>
-                        <td>{{ $resultado['fecha_convenida'] }}</td>
-                        <td>{{ $resultado['fecha_entrega'] }}</td>
-                        <td>{{ $resultado['problema'] }}</td>
-                        <td>{{ $resultado['comentarios'] }}</td>
+                        
+                        <td>{{ $resultado['estatus_suscriptor'] }}</td>
+                        <td>{{ $resultado['estado_orden'] }}</td>
+                        <td>{{ $resultado['canal_venta'] }}</td>
+                        <td>{{ $resultado['estado_suscriptor'] }}</td>
+                        <td>{{ $resultado['internet'] }}</td>
+                        <td>{{ $resultado['ciclo_facturacion'] }}</td>
+                        <td>{{ $resultado['numero_orden'] }}</td>
+                        <td>{{ $resultado['fecha_creacion_orden'] }}</td>
+                        <td>{{ $resultado['fecha_cierre_orden'] }}</td>
+                        <td>{{ $resultado['play'] }}</td>              
                     </tr>
                 @endforeach
             </tbody>
@@ -105,7 +105,6 @@
 
  @section('scripts')
  <!-- Scripts de datarange-->
-
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
@@ -181,7 +180,7 @@ $(document).ready(function() {
                             className: 'noVis'
                         },
                         {
-                            "targets": [ 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22 ],
+                            "targets": [  7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 18, 19, 20, 21, 22 ],
                             "visible": false
                         }
                     ],

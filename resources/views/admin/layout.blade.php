@@ -4,9 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
 
   <title>ATC</title>
-
+  @yield('header')
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{{ URL::asset('/plugins/font-awesome/css/font-awesome.min.css') }}">
   <!-- IonIcons -->
@@ -40,7 +41,7 @@ to get the desired effect
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="/home" class="nav-link">Inicio</a>
+        <a href="{{ url('/') }}" class="nav-link">Inicio</a>
       </li>
     </ul>
 
@@ -77,7 +78,7 @@ to get the desired effect
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="{{ url('/') }}" class="brand-link">
       <img src="{{ URL::asset('/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">ATC</span>
@@ -88,9 +89,11 @@ to get the desired effect
       
       <!-- Sidebar Menu -->
       <nav class="mt-2">
+        
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+         @if(Auth::user()->hasRole('admin'))
           <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link active">
               <i class="nav-icon fa fa-dashboard"></i>
@@ -112,115 +115,72 @@ to get the desired effect
                   <p>Usuarios</p>
                 </a>
               </li>
-             
             </ul>
-          </li>
-
-          <li class="nav-item">
-                <a href="{{ route('cece.index') }}" class="nav-link">
-                  <i class="nav-icon fa fa-tree"></i>
-                  <p>Reporte Cece</p>
-                </a>
-              </li>
-          
+          </li>  
+             @endif     
+           @if(Auth::user()->hasAnyRole(['admin', 'user']))
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-pie-chart"></i>
               <p>
-                Charts
+                Importar
                 <i class="right fa fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>ChartJS</p>
+                <a href="{{ route('acumulado.index') }}" class="nav-link">
+                  <i class="nav-icon fa fa-tree"></i>
+                  <p>Importar Acumulado</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/charts/flot.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Flot</p>
+                <a href="{{ route('objetado.index') }}" class="nav-link">
+                  <i class="nav-icon fa fa-tree"></i>
+                  <p>Importar Objetados</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="pages/charts/inline.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Inline</p>
+             <li class="nav-item">
+                <a href="{{ route('seg.index') }}" class="nav-link">
+                  <i class="nav-icon fa fa-tree"></i>
+                  <p>Importar Seg</p>
                 </a>
               </li>
+              
             </ul>
           </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-tree"></i>
               <p>
-                UI Elements
+                Reportes
                 <i class="fa fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/UI/general.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>General</p>
+                <a href="{{ route('cece.index') }}" class="nav-link">
+                  <i class="nav-icon fa fa-tree"></i>
+                  <p>Reporte Cece</p>
+                </a>
+              </li>    
+              <li class="nav-item">
+                <a href="{{ route('reporte_seg.index') }}" class="nav-link">
+                  <i class="nav-icon fa fa-tree"></i>
+                  <p>Reporte Seg</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/UI/icons.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Icons</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/UI/buttons.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Buttons</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/UI/sliders.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Sliders</p>
+                <a href="{{ route('reporte_acumulado.index') }}" class="nav-link">
+                  <i class="nav-icon fa fa-tree"></i>
+                  <p>Reporte Acumulado</p>
                 </a>
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-edit"></i>
-              <p>
-                Forms
-                <i class="fa fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/forms/general.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>General Elements</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/forms/advanced.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Advanced Elements</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/forms/editors.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Editors</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-         
-         
-          
-          
+           @endif
         </ul>
+
       </nav>
       <!-- /.sidebar-menu -->
     </div>
@@ -273,10 +233,6 @@ to get the desired effect
 <!-- AdminLTE -->
 <script src="{{ URL::asset('/dist/js/adminlte.js')}}"></script>
 
-<!-- OPTIONAL SCRIPTS -->
-<script src="{{ URL::asset('plugins/chart.js/Chart.min.js')}}"></script>
-<script src="{{ URL::asset('/dist/js/demo.js')}}"></script>
-<script src="{{ URL::asset('/dist/js/pages/dashboard3.js')}}"></script>
 
  <script type="text/javascript">
 @yield('scripts')

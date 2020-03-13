@@ -1,7 +1,7 @@
- @extends('admin.layout')
+@extends('admin.layout')
 
     @section('content-title')
-    <h1>Importar archivo SEG</h1>
+    <h1>Importar archivo Objetados</h1>
 @stop
 @section('content')
 
@@ -15,7 +15,7 @@
      
 
 <div class="card card"> 
- <form method="POST" enctype="multipart/form-data" action="{{ route('seg.post') }}">
+ <form method="POST" enctype="multipart/form-data" action="{{ route('objetado.post') }}">
             {!! csrf_field() !!}
     <div class="card-header"> 
         <div class="row">
@@ -31,24 +31,28 @@
     	</div>
     </div>
 </form>
- @if (isset($datos_seg))
+ @if (isset($datos_objetado))
     <div class="card-body"> 
-        <table width="100%" class="table table-striped table-bordered" id ="seg-table">
+        <table width="100%" class="table table-striped table-bordered" id ="objetado-table">
             <thead>
                 <tr>
-                    <th>Solicitud</th>
-                    <th>Movimiento</th>
-                    <th>Etapa</th>
-                    <th>Fecha solicitud</th>
+                    <th>Folio Seg</th>
+                    <th>Fecha Solicitud</th>
+                    <th>Fecha Instalación</th>
+                    <th>Estatus Seg</th>
+                    <th>Fecha Objeción</th>
+                    <th>Motivo Objeción</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($datos_seg as $datos)
+                @foreach($datos_objetado as $datos)
                     <tr>
-                        <td>{{ $datos->solicitud }}</td>
-                        <td>{{ $datos->movimiento }}</td>
-                        <td>{{ $datos->etapa }}</td>
+                        <td>{{ $datos->folio_seg }}</td>
                         <td>{{ $datos->fecha_solicitud }}</td>
+                        <td>{{ $datos->fecha_instalacion }}</td>
+                        <td>{{ $datos->estatus_seg }}</td>
+                        <td>{{ $datos->fecha_objecion }}</td>
+                        <td>{{ $datos->motivo_objecion }}</td>
                     </tr>
                 @endforeach
             </tbody>
@@ -68,7 +72,7 @@
  
  <script type="text/javascript">
     $(document).ready(function() {
-        $('#seg-table').DataTable();
+        $('#objetado-table').DataTable();
         });
 
 

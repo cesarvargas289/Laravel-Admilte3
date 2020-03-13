@@ -42,10 +42,17 @@ Route::post('cece/', ['as' => 'cece.post', 'uses' => 'CeceController@indexPost']
 Route::get('seg',  ['as' => 'seg.index', 'uses' =>'ImportExcelSEGController@index']);
 Route::post('seg/', ['as' => 'seg.post', 'uses' => 'ImportExcelSEGController@import']);
 
-
 Route::get('reporte_seg',  ['as' => 'reporte_seg.index', 'uses' =>'ReporteSegController@index']);
 Route::post('reporte_seg/', ['as' => 'reporte_seg.post', 'uses' => 'ReporteSegController@indexPost']);
 
+Route::get('acumulado',  ['as' => 'acumulado.index', 'uses' =>'ImportExcelAcumuladoController@index']);
+Route::post('acumulado/', ['as' => 'acumulado.post', 'uses' => 'ImportExcelAcumuladoController@import']);
+
+Route::get('reporte_acumulado',  ['as' => 'reporte_acumulado.index', 'uses' =>'ReporteAcumuladoController@index']);
+Route::post('reporte_acumulado/', ['as' => 'reporte_acumulado.post', 'uses' => 'ReporteAcumuladoController@indexPost']);
+
+Route::get('objetado',  ['as' => 'objetado.index', 'uses' =>'ImportExcelObjetadoController@index']);
+Route::post('objetado/', ['as' => 'objetado.post', 'uses' => 'ImportExcelObjetadoController@import']);
 
 
 

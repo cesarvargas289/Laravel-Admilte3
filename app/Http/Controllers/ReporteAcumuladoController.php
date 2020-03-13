@@ -7,21 +7,20 @@ use DB;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
-class ReporteSegController extends Controller
+class ReporteAcumuladoController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth');
     }
-/**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-         return view('reporte_seg.index');
+         return view('reporte_acumulado.index');
     }
 
     public function indexPost(Request $request)
@@ -34,22 +33,22 @@ class ReporteSegController extends Controller
         $end = substr($daterange, 13, 10);
         //Se cambia el formato de la fecha
         $end = date("Y-m-d", strtotime($end));
-        $resultados = $this->Reporte_seg($start, $end);
-        return view('reporte_seg.index', compact('resultados'));
+        $resultados = $this->Reporte_Acumulado($start, $end);
+        return view('reporte_acumulado.index', compact('resultados'));
     }
 
-    public function Reporte_seg($start, $end){
+    public function Reporte_Acumulado($start, $end){
         $this->start = $start;
         $this->end = $end;
-        //Obtener información de la tabla seg por fecha
-        $resultados_seg = $this->get_data_seg($start, $end);
+        //Obtener información de la tabla acumulado por fecha
+        $resultados_acumulado = $this->get_data_acumulado($start, $end);
         //Cast de los datos obtenidos tipo colección a array
-        $resultados_seg = (array)$resultados_seg;
+        $resultados_acumulado = (array)$resultados_acumulado;
         $folios = [];
-        //Loop para crear array de los numeros de folio de la tabla seg 
-        foreach($resultados_seg as $resultado_seg)
+        //Loop para crear array de los numeros de folio de la tabla acumulado
+        foreach($resultados_acumulado as $resultado_acumulado)
         {
-            array_push($folios, $resultado_seg->solicitud);  
+            array_push($folios, $resultado_acumulado->numero_suscriptor);  
         }
         //Se obtienen los datos de la base cece comparando con el arreglo de folios    
         $datos_cece = $this->get_data_cece($folios);
@@ -57,19 +56,19 @@ class ReporteSegController extends Controller
         $resultados = new Collection;
         $datos_completos =[];
         //Loop para comparar los folios de los datos y reunir la información
-        foreach ($resultados_seg as $dato_seg) 
+        foreach ($resultados_acumulado as $dato_acumulado) 
         {
-            //Cast de dato_seg a array para hacer comparativa
-            $dato_seg = (array)$dato_seg;
+            //Cast de dato_acumulado a array para hacer comparativa
+            $dato_acumulado = (array)$dato_acumulado;
             foreach ($datos_cece as $dato_cece)
             {
                 //Cast de dato_cece a array para hacer comparativa
                 $dato_cece = (array)$dato_cece;
                 //Condicional para verificar si los folios son los mismos
-                if ($dato_seg['solicitud'] == $dato_cece['fol_seg']) 
+                if ($dato_acumulado['numero_suscriptor'] == $dato_cece['numero_cliente_dish']) 
                 {
                     //unión de los datos en resultados 
-                    $resultados = array_merge($dato_cece, $dato_seg);
+                    $resultados = array_merge($dato_cece, $dato_acumulado);
                     //Guardar los resultados en datos completos
                     array_push($datos_completos, $resultados);
                     //dd($datos_completos);
@@ -79,12 +78,24 @@ class ReporteSegController extends Controller
         return $datos_completos;
     }
 
-    public function get_data_seg($start, $end)
+    public function get_data_acumulado($start, $end)
     {
-        //Se obtienen todos los datos del la tabla seg comparandolo con la fecha
-        $resultados = DB::select("SELECT * FROM seg
-                                where fecha_solicitud between '".$start."' and '".$end."'
+        //Se obtienen todos los datos del la tabla acumulado comparandolo con la fecha
+        $resultados = DB::select("SELECT numero_suscriptor,
+        							estatus_suscriptor,
+        							estado_orden,
+        							canal_venta,
+        							estado_suscriptor,
+        							internet,
+        							ciclo_facturacion,
+        							numero_orden,
+        							fecha_creacion_orden,
+        							fecha_cierre_orden,
+        							play
+        						 	FROM acumulados
+                                	where fecha_creacion_orden between '".$start."' and '".$end."'
                                ");
+        //dd($resultados);
         return $resultados;
     }
 
@@ -127,5 +138,4 @@ class ReporteSegController extends Controller
         return $array;
     }
 
-    
 }
